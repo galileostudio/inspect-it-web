@@ -1,0 +1,36 @@
+.container
+  br
+  h1
+    | Empresa 
+    = @company.name
+  - if @company.errors.any?
+    .alert.alert-error
+      ul
+        - @company.errors.full_messages.each do |msg|
+          li
+            = msg
+  .well
+    p
+      strong
+        | CNPJ: 
+      = @company.cnpj
+    p
+      strong
+        | Endereço: 
+      = @company.address
+    p
+      strong
+        | Telefone: 
+      = @company.phone
+    p
+      strong
+        | Contato:
+      = @company.contact
+    = link_to "Adicionar Inspeção", new_inspection_path(company_id: @company.id), class:"btn btn-outline-primary"
+    br
+    br
+
+    = render 'tableinspections', inspections: @inspections
+    
+    br
+    = link_to 'Voltar', companies_path, class:"btn btn-outline-primary"
